@@ -51,13 +51,24 @@ public class AppController {
 
         String result = studentService.loginService(student);
         if (!result.equals(StudentService.CHECK_SUCCESS)) {
-            request.getSession().setAttribute("studentName", student.getStudentName());
             model.addAttribute("result", result);
-            model.addAttribute("session", request.getSession());
-            model.addAttribute("studentName", student.getStudentName());
             return "index";
         }
+        request.getSession().setAttribute("studentName", student.getStudentName());
+        model.addAttribute("session", request.getSession());
         return "home";
+    }
+
+    @RequestMapping(value = "/home")
+    public String homePage(Model model, HttpServletRequest request) {
+        //model.addAttribute("session", request.getSession());
+        return "home";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().setAttribute("studentName", null);
+        return "index";
     }
 
 }
