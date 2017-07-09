@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zn-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1user-scalable=no">
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <title>注册结果</title>
+
+    <style>
+        body {
+            padding-top: 50px;
+            background-color: #eee;
+            font-family: "Microsoft YaHei UI Light";
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="afterSubmit">
+
+    <div class="jumbotron" style="margin-top: 20px; background-color: #c9c8c7; padding-top: 20px; padding-bottom: 20px">
+        <div th:if="${result == 'y'}">
+            <h2><b>恭喜，您已注册成功！</b></h2>
+            <p>温馨提示：请点击下方按钮回到登录页面。</p>
+            <p>
+                <a class="btn btn-lg btn-primary" role="button" href="index">点击此处返回登录页面 &raquo;</a>
+            </p>
+        </div>
+        <div th:if="${result == 'n'}">
+            <h2><b>抱歉，注册失败！</b></h2>
+            <p>温馨提示：您使用了已被占用的用户名，请填写其它昵称。</p>
+            <p>
+                <a class="btn btn-lg btn-primary" role="button" href="#" onclick="history.back()">点击此处返回注册页面 &raquo;</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

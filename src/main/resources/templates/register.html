@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1user-scalable=no"/>
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <title>注册</title>
+
+    <style>
+        body {
+            padding-top: 50px;
+            background-color: #eee;
+            font-family: "Microsoft YaHei UI Light";
+        }
+
+        .starter-template {
+            padding: 40px 15px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index">图书馆管理系统</a>
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="agreementNav" class="active"><a onclick="agreePage()" href="#">用户守则</a></li>
+                <li id="informationNav"><a onclick="startRegister()" href="#">注册信息</a></li>
+                <li id="helpNav"><a onclick="helpPage()" href="#">帮助</a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container" id="agreement">
+
+    <div class="jumbotron" style="margin-top: 20px; background-color: #c9c8c7">
+        <h1 style="font-size: 300%">请认真阅读下述条例</h1>
+        <p>北航图书馆校园用户守则定于1995年，由为促进优良校风、学风建设，规范学术行为，维护学术诚信和学术声誉，在北京航空航天大学学习期间。</p>
+        <p>勾选下方信息，代表您已经完整阅读条例并愿意遵守其相关内容。</p>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" id="userAgree"> <b>我已阅读并同意《用户守则》</b>
+            </label>
+        </div>
+        <p>
+            <a class="btn btn-lg btn-primary" role="button" onclick="startRegister()">开始注册 &raquo;</a>
+        </p>
+    </div>
+    <div class="starter-template">
+        <h1 style="text-align: center"><b>北航图书馆校园用户守则</b></h1>
+        <br>
+        <p style="font-size: 150%; text-indent: 2em">
+            为促进优良校风、学风建设，规范学术行为，维护学术诚信和学术声誉，在北京航空航天大学学习期间，本人郑重承诺：
+        </p>
+        <br>
+        <p style="font-size: 150%; text-indent: 2em">
+            一、树立诚信品质，遵守学术道德。努力践行“德才兼备，知行合一”的校训，成为良好学术风气的维护者、严谨治学态度的践行者、优良学术道德的传承者。
+        </p>
+        <br>
+        <p style="font-size: 150%; text-indent: 2em">
+            二、自觉学习并严格遵守国家有关法律法规和学校相关管理规定，若有违背学术诚信行为，同意按照《北京航空航天大学研究生学术道德规范管理办法》、《北京航空航天大学学位论文作假行为处理实施细则》和《北京航空航天大学学生违纪处分规定》等规定处理。
+        </p>
+    </div>
+
+</div>
+
+<div class="container" id="information" style="display: none">
+
+    <h2 style="text-align: center"><b>请在下方输入注册信息</b></h2>
+    <div class="jumbotron" style="margin-top: 20px; background-color: #c9c8c7; padding-bottom: 5%; padding-top: 3%">
+        <form class="form-horizontal" th:action="@{/register}" th:object="${student}" method="post">
+            <div class="form-group">
+                <label class="col-md-2 control-label col-md-offset-2"><b>用户名</b></label>
+                <div class="col-md-5">
+                    <input type="text" name="studentName" class="form-control" placeholder="在此输入用户名" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label col-md-offset-2" ><b>电子邮箱</b></label>
+                <div class="col-md-5">
+                    <input type="email" name="email" class="form-control" placeholder="在此输入邮箱" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label col-md-offset-2"><b>密码</b></label>
+                <div class="col-md-5">
+                    <input type="password" name="password" class="form-control" placeholder="在此输入密码" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label col-md-offset-2" ><b>性别</b></label>
+                <div class="col-md-5">
+                    <select class="form-control" name="sex">
+                        <option>男</option>
+                        <option>女</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group-lg">
+                <div class="col-md-offset-4 col-md-6">
+                    <input type="submit" class="btn btn-lg btn-primary" value="注  册" style="width: 70%">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div class="container" id="help" style="display: none">
+    <p class="lead">这是帮助页面，计划搞成监听条</p>
+</div>
+
+<script type="text/javascript" src="/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
+</body>
+<script>
+
+    function startRegister() {
+        if ($("#userAgree").is(':checked')) {
+
+            $("#agreementNav").attr("class", "");
+            $("#helpNav").attr("class", "");
+            $("#informationNav").attr("class", 'active');
+
+            $("#agreement").hide();
+            $("#help").hide();
+            $("#information").show();
+        }
+        else {
+            alert("请您先同意用户使用守则！");
+        }
+    }
+
+    function agreePage() {
+        $("#agreementNav").attr("class", "active");
+        $("#helpNav").attr("class", "");
+        $("#informationNav").attr("class", '');
+
+        $("#agreement").show();
+        $("#help").hide();
+        $("#information").hide();
+    }
+
+    function helpPage() {
+        $("#agreementNav").attr("class", "");
+        $("#helpNav").attr("class", "active");
+        $("#informationNav").attr("class", '');
+
+        $("#agreement").hide();
+        $("#help").show();
+        $("#information").hide();
+    }
+
+
+</script>
+</html>
