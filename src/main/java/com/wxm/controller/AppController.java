@@ -60,8 +60,7 @@ public class AppController {
     }
 
     @RequestMapping(value = "/home")
-    public String homePage(Model model, HttpServletRequest request) {
-        //model.addAttribute("session", request.getSession());
+    public String homePage() {
         return "home";
     }
 
