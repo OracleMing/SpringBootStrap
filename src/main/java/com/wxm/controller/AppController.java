@@ -66,7 +66,7 @@ public class AppController {
 
     @RequestMapping(value = "/logout")
     public String logout(HttpServletRequest request) {
-        request.getSession().setAttribute("studentName", null);
+        request.getSession().removeAttribute("studentName");
         return "index";
     }
 
