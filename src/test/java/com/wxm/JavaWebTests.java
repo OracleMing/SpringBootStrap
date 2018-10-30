@@ -1,5 +1,6 @@
 package com.wxm;
 
+import com.wxm.service.StudentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,8 +10,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class JavaWebTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void contextLoads() {
+    }
+
+    @Test
+    public void testHr() {
+        StudentService studentService = new StudentService();
+        studentService.getHr(7);
+    }
 
 }
