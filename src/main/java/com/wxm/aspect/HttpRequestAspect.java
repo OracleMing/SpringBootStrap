@@ -20,7 +20,7 @@ public class HttpRequestAspect {
 
     /*@PointCut注解表示表示横切点，哪些方法需要被横切*/
     /*切点表达式*/
-    @Pointcut("execution(public * com.wxm.controller.*.*(..))")
+    @Pointcut("execution(public * com.wxm.controller.AOP*.*(..))")
     /*切点签名*/
     public void print() {
     }
@@ -64,7 +64,7 @@ public class HttpRequestAspect {
 
     /*@PointCut注解表示表示横切点，哪些方法需要被横切*/
     /*切点表达式*/
-    @Pointcut("execution(public * com.wxm.controller.*.*(..))")
+    @Pointcut("execution(public * com.wxm.controller.AOP*.*(..))")
     public void afterPoincut() {
     }
 
